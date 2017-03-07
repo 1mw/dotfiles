@@ -11,6 +11,7 @@ set autoindent
 set smartindent
 set wrap lbr
 
+" remap jk to gj gk
 nnoremap j gj
 nnoremap k gk
 vnoremap j gj
