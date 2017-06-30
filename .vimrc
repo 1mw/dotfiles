@@ -2,19 +2,47 @@ call plug#begin('~/.local/share/nvim/plugged')
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'Valloric/YouCompleteMe'
-Plug 'jlanzarotta/bufexplorer'
-Plug 'yuratomo/w3m.vim'
-Plug 'dracula/vim'
+Plug 'dkarter/bullets.vim'
+Plug 'airblade/vim-rooter'
+Plug 'scrooloose/nerdtree'
+Plug 'majutsushi/tagbar'
+Plug 'vim-syntastic/syntastic'
+Plug 'vimwiki/vimwiki'
 call plug#end()
 
+" Syntastic
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+" misc
+set background=dark
+
+" Tagbar
+nnoremap <C-t> :TagbarToggle<CR>
+
+" NERDTree
+map <C-n> :NERDTreeToggle<CR>
+
 " air-line
+set laststatus=2
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_exclude_preview = 1
+let g:airline_theme='ubaryd'
 
 " ycm
 let g:ycm_autoclose_preview_window_after_completion = 1
 let g:ycm_autoclose_preview_window_after_insertion = 1
+autocmd FileType c      let g:ycm_global_ycm_extra_conf = '~/.vim/ycm_files/c/.ycm_extra_conf.py'
+
+" vimwiki
+let g:vimwiki_list = [{'path':'~/GoogleDrive/wiki', 'path_html':'~/GoogleDrive/wikihtml'}]
 
 set hidden
 set number
@@ -23,7 +51,7 @@ set smartindent
 set wrap lbr
 set cursorline
 hi cursorline cterm=none
-hi cursorlinenr ctermfg=white
+hi cursorlinenr term=bold ctermfg=blue
 
 " remap jk to gj gk
 nnoremap j gj
